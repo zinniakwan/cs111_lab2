@@ -2,11 +2,11 @@
 
 ## UID: 205777626
 
-(IMPORTANT: Only replace the above numbers with your true UID, do not modify spacing and newlines, otherwise your tarfile might not be created correctly)
+# You Spin Me Round Robin
 
-# A Kernel Seedling
+Our C project simulates the "round robin" implementation of CPU scheduler. The program outputs the overall average waiting time and repsonse time of a series of processes, which the user inputs for a certain time quantum.
 
-Our kernel seedling counts the current number of processes running.
+Round Robin is a scheduling algorithm that places incoming processes into a queue, and exectues them in FIFO for the allotted quantum time.
 
 ## Building
 
@@ -15,23 +15,13 @@ make
 
 ## Running
 
-Inject module into kernel:
-sudo insmod proc_count.ko
+We must include a txt file path that specifies the proccess ids, arrival times, and burst times as our first argument.
+We must also specify the quantum length as our second argument.
 
-To run:
-cat /proc/count
+For example, if we are trying to access processes in processes.txt with a quantum time of 3, we run:
 
-What it does:
-Once we inject the module into our /proc file, we count how many processes are running by incrementing a sum in the for_each_process command, and printing it out using the seq_printf command.
+./rr processes.txt 3
 
 ## Cleaning Up
 
-You remove your kernel module with the terniman command:
-sudo rmmod proc_count
-make clean
-
-## Testing
-
-Report which kernel release version you tested your module on
-(hint: use `uname`, check for options with `man uname`).
-It should match release numbers as seen on <https://www.kernel.org/>.
+run the following command: make clean
